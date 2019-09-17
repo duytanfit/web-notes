@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+  
+  web_notes:
+    image: postgres:9.6
+    restart: always
+    container_name: web_notes
+    environment:
+      POSTGRES_DB: web_notes
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    ports:
+      - 5432:5432
+
+  # We also should have an database test to run testcase
+  # If people don't write testcase, don't need to create test database
+  # Let's comment it
+  # web_notes:
+  #   image: postgres:9.6
+  #   restart: always
+  #   container_name: web_notes_test
+  #   environment:
+  #     POSTGRES_DB: web_notes
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: 123
+  #   ports:
+  #     - 5433:5432
+
+  # Admin dashboard
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    restart: always
